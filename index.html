@@ -1,0 +1,407 @@
+// Update this page (the content is just a fallback if you fail to update the page)
+
+const Index = () => {
+return (
+<div className="min-h-screen flex items-center justify-center bg-background">
+<div className="text-center">
+<h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
+<p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+</div>
+</div>
+const Index = () => {
+  return (
+    <div dangerouslySetInnerHTML={{
+      __html: `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MalookRiddles - 100 Brain Teasers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .credit {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .random-btn {
+            background: #FF6B6B;
+        }
+
+        .show-all-btn {
+            background: #4ECDC4;
+        }
+
+        .answer-btn {
+            background: #FFE66D;
+            color: #333;
+        }
+
+        .back-btn {
+            background: #A8E6CF;
+            color: #333;
+        }
+
+        .riddle-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .riddle-number {
+            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .riddle-text {
+font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .answer-text {
+            font-size: 1.2rem;
+            color: #4CAF50;
+            font-weight: bold;
+            background: #f0f9f0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .all-riddles {
+            display: none;
+        }
+
+        .riddle-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .riddle-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .riddle-item .question {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .riddle-item .answer {
+            color: #4CAF50;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+@media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 200px;
+            }
+            
+            .riddle-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧩 MalookRiddles</h1>
+            <div class="subtitle">100 Mind-Bending Riddles to Challenge Your Brain</div>
+            <div class="credit">Created by Musa</div>
+        </header>
+
+        <div class="controls">
+            <button onclick="showRandomRiddle()" class="random-btn">🎲 Random Riddle</button>
+            <button onclick="toggleAllRiddles()" class="show-all-btn">📋 Show All Riddles</button>
+        </div>
+
+        <div id="single-riddle" class="riddle-container">
+            <div class="riddle-number">Riddle #<span id="riddle-num">1</span></div>
+            <div class="riddle-text" id="riddle-question">Click "Random Riddle" to start!</div>
+            <div id="riddle-answer" class="answer-text hidden"></div>
+            <div id="riddle-controls" class="hidden">
+                <button onclick="showAnswer()" class="answer-btn">💡 Show Answer</button>
+                <button onclick="hideAnswer()" class="back-btn hidden" id="back-btn">🔙 Back to Riddle</button>
+            </div>
+        </div>
+
+        <div id="all-riddles" class="all-riddles">
+            <h2 style="color: white; text-align: center; margin-bottom: 20px;">All 100 Riddles</h2>
+            <div id="riddles-list"></div>
+        </div>
+    </div>
+
+<script>
+        const riddles = [
+            {q: "What has keys but no locks, space but no room, and you can enter but not go inside?", a: "A keyboard"},
+            {q: "The more you take away from me, the bigger I become. What am I?", a: "A hole"},
+            {q: "What comes once in a minute, twice in a moment, but never in a thousand years?", a: "The letter M"},
+            {q: "I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I?", a: "A map"},
+            {q: "What can travel around the world while staying in a corner?", a: "A stamp"},
+            {q: "What gets wetter the more it dries?", a: "A towel"},
+            {q: "I'm tall when I'm young and short when I'm old. What am I?", a: "A candle"},
+            {q: "What has one eye but cannot see?", a: "A needle"},
+            {q: "What goes up but never comes down?", a: "Your age"},
+            {q: "What has hands but cannot clap?", a: "A clock"},
+            {q: "What can you catch but not throw?", a: "A cold"},
+            {q: "What runs around a whole yard without moving?", a: "A fence"},
+            {q: "What has a head, a tail, is brown, and has no legs?", a: "A penny"},
+            {q: "What gets broken without being held?", a: "A promise"},
+            {q: "What has teeth but cannot eat?", a: "A comb"},
+            {q: "What goes through cities and fields, but never moves?", a: "A road"},
+            {q: "What can you keep after giving to someone?", a: "Your word"},
+            {q: "What is full of holes but still holds water?", a: "A sponge"},
+            {q: "What belongs to you but other people use it more than you?", a: "Your name"},
+            {q: "What comes down but never goes up?", a: "Rain"},
+            {q: "What has a neck but no head?", a: "A bottle"},
+            {q: "What can be cracked, made, told, and played?", a: "A joke"},
+            {q: "What runs but never walks, has a mouth but never talks?", a: "A river"},
+            {q: "What can you break, even if you never pick it up or touch it?", a: "A promise"},
+            {q: "What starts with T, ends with T, and has T in it?", a: "A teapot"},
+            {q: "I'm light as a feather, yet the strongest person can't hold me for more than 5 minutes. What am I?", a: "Your breath"},
+            {q: "What has four wheels and flies?", a: "A garbage truck"},
+            {q: "What gets sharper the more you use it?", a: "Your brain"},
+            {q: "What has a golden head and a golden tail, but no body?", a: "A coin"},
+            {q: "What can you serve but never eat?", a: "A tennis ball"},
+            {q: "What building has the most stories?", a: "A library"},
+            {q: "What has legs but doesn't walk?", a: "A table"},
+            {q: "What can you hear but not see or touch?", a: "Your voice"},
+            {q: "What gets bigger when more is taken away from it?", a: "A hole"},
+            {q: "What has words but never speaks?", a: "A book"},
+            {q: "What can run but never walks, has a bed but never sleeps?", a: "A river"},
+            {q: "What appears once in June, twice in November, and not at all in May?", a: "The letter E"},
+            {q: "What has a bank but no money?", a: "A river"},
+            {q: "What can you put in a bucket to make it weigh less?", a: "A hole"},
+            {q: "What begins with an E, ends with an E, but only contains one letter?", a: "An envelope"},
+            {q: "What has many rings but no fingers?", a: "A tree"},
+            {q: "What flies without wings?", a: "Time"},
+            {q: "What can you hold without ever touching or using your hands?", a: "Your breath"},
+            {q: "What tastes better than it smells?", a: "Your tongue"},
+            {q: "What invention lets you look right through a wall?", a: "A window"},
+            {q: "What can be stolen, mistaken, or held dear?", a: "Trust"},
+            {q: "What has a spine but no bones?", a: "A book"},
+{q: "What can you see in the middle of March and April that you can't see at the beginning or end?", a: "The letter R"},
+            {q: "What is black when you buy it, red when you use it, and white when you're done?", a: "Charcoal"},
+            {q: "What gets whiter the dirtier it gets?", a: "A chalkboard"},
+            {q: "What can you make that you can't see?", a: "Noise"},
+            {q: "What kind of room has no doors or windows?", a: "A mushroom"},
+            {q: "What becomes smaller when you turn it upside down?", a: "The number 6"},
+            {q: "What has one foot on each side and one in the middle?", a: "A yardstick"},
+            {q: "What is so fragile that saying its name breaks it?", a: "Silence"},
+            {q: "What is cut on a table, but is never eaten?", a: "A deck of cards"},
+            {q: "What has stripes and goes through the air?", a: "A zebra in an airplane"},
+            {q: "What gets colder as it heats up?", a: "A refrigerator"},
+            {q: "What can you add to a bucket of water to make it lighter?", a: "Holes"},
+            {q: "What has a foot but no legs?", a: "A snail"},
+            {q: "What starts and ends with the letter E but only has one letter?", a: "An envelope"},
+            {q: "What can you throw but cannot catch?", a: "A tantrum"},
+            {q: "What runs but has no legs?", a: "Water"},
+            {q: "What can honk without using a horn?", a: "A goose"},
+            {q: "What can you lose that will cause other people to lose theirs too?", a: "Your temper"},
+            {q: "What has a face but no eyes?", a: "A clock"},
+            {q: "What is harder to catch the faster you run?", a: "Your breath"},
+            {q: "What has a thumb and four fingers but is not alive?", a: "A glove"},
+            {q: "What has two hands but no arms?", a: "A clock"},
+            {q: "What can be open or closed but has no door?", a: "Your mind"},
+            {q: "What breaks every day but is never broken?", a: "Dawn"},
+            {q: "What has waves but no water?", a: "Your hair"},
+            {q: "What can you swallow that can also swallow you?", a: "Pride"},
+            {q: "What is always behind you but you can never see it?", a: "Your back"},
+            {q: "What has strings but is not a musical instrument?", a: "A puppet"},
+            {q: "What can you give away and still keep?", a: "A secret"},
+            {q: "What has toes but no feet or socks?", a: "Corn"},
+            {q: "What gets tighter the more you squeeze it?", a: "A knot"},
+            {q: "What can you hold in your left hand but not in your right?", a: "Your right elbow"},
+            {q: "What is easy to get into but hard to get out of?", a: "Trouble"},
+            {q: "What can be right but never wrong?", a: "An angle"},
+            {q: "What comes first, the chicken or the egg?", a: "The letter C"},
+            {q: "What kind of coat is always wet when you put it on?", a: "A coat of paint"},
+            {q: "What can you hear but cannot see and only speaks when spoken to?", a: "An echo"},
+            {q: "What goes up and down but doesn't move?", a: "Stairs"},
+            {q: "What has four eyes but cannot see?", a: "Mississippi"},
+            {q: "What kind of ship has two mates but no captain?", a: "A relationship"},
+            {q: "What can be measured but not seen?", a: "Temperature"},
+            {q: "What can you catch with your eyes closed?", a: "Sleep"},
+            {q: "What is the end of everything?", a: "The letter G"},
+            {q: "What makes more noise than a pig under a gate?", a: "Two pigs"},
+            {q: "What always answers without speaking?", a: "An echo"},
+            {q: "What can you sit on, sleep on, and brush your teeth with?", a: "A chair, a bed, and a toothbrush"},
+            {q: "What goes away as soon as you talk about it?", a: "Silence"},
+            {q: "What kind of tree can you carry in your hand?", a: "A palm tree"},
+            {q: "What is 3/7 chicken, 2/3 cat, and 2/4 goat?", a: "Chicago"},
+            {q: "What has no beginning, end, or middle?", a: "A circle"},
+            {q: "What can you never eat for breakfast?", a: "Lunch or dinner"},
+            {q: "What kind of cheese is made backward?", a: "Edam"},
+            {q: "What do you throw out when you want to use it but take in when you don't want to use it?", a: "An anchor"},
+            {q: "What grows when it eats, but dies when it drinks?", a: "Fire"},
+            {q: "What kind of cup doesn't hold water?", a: "A cupcake"},
+            {q: "What has a river but no water?", a: "A map"},
+            {q: "What can you find in a cupboard that can never be used for cooking?", a: "The letter U"},
+            {q: "What five letter word becomes shorter when you add two letters to it?", a: "Short"}
+        ];
+
+        let currentRiddleIndex = 0;
+        let showingAllRiddles = false;
+
+        function showRandomRiddle() {
+            hideAllRiddles();
+            currentRiddleIndex = Math.floor(Math.random() * riddles.length);
+            const riddle = riddles[currentRiddleIndex];
+            
+            document.getElementById('riddle-num').textContent = currentRiddleIndex + 1;
+            document.getElementById('riddle-question').textContent = riddle.q;
+            document.getElementById('riddle-answer').textContent = riddle.a;
+            document.getElementById('riddle-controls').classList.remove('hidden');
+            
+            hideAnswer();
+        }
+
+        function showAnswer() {
+            document.getElementById('riddle-answer').classList.remove('hidden');
+            document.getElementById('back-btn').classList.remove('hidden');
+            document.querySelector('.answer-btn').classList.add('hidden');
+        }
+
+        function hideAnswer() {
+            document.getElementById('riddle-answer').classList.add('hidden');
+            document.getElementById('back-btn').classList.add('hidden');
+            document.querySelector('.answer-btn').classList.remove('hidden');
+        }
+
+        function toggleAllRiddles() {
+            if (showingAllRiddles) {
+                hideAllRiddles();
+            } else {
+                showAllRiddles();
+}
+        }
+
+        function showAllRiddles() {
+            document.getElementById('single-riddle').classList.add('hidden');
+            document.getElementById('all-riddles').style.display = 'block';
+            document.querySelector('.show-all-btn').textContent = '🔙 Back to Single';
+            showingAllRiddles = true;
+            
+            const riddlesList = document.getElementById('riddles-list');
+            riddlesList.innerHTML = '';
+            
+            riddles.forEach((riddle, index) => {
+                const riddleDiv = document.createElement('div');
+                riddleDiv.className = 'riddle-item';
+                riddleDiv.innerHTML = \`
+                    <h3>Riddle #\${index + 1}</h3>
+                    <div class="question">\${riddle.q}</div>
+                    <div class="answer">Answer: \${riddle.a}</div>
+                \`;
+                riddlesList.appendChild(riddleDiv);
+            });
+        }
+
+        function hideAllRiddles() {
+            document.getElementById('single-riddle').classList.remove('hidden');
+            document.getElementById('all-riddles').style.display = 'none';
+            document.querySelector('.show-all-btn').textContent = '📋 Show All Riddles';
+            showingAllRiddles = false;
+        }
+
+        // Initialize with a random riddle
+        window.addEventListener('load', function() {
+            showRandomRiddle();
+        });
+    </script>
+</body>
+</html>
+      `
+    }} />
+  );
+};
+
+export default Index;
