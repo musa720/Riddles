@@ -1,0 +1,52 @@
+// Index.jsx
+import React, { useState } from "react";
+
+const riddles = [
+  { q: "What has keys but no locks?", a: "A keyboard" },
+  { q: "The more you take away, the bigger I get. What am I?", a: "A hole" },
+  // ... add more riddles here
+];
+
+const Index = () => {
+  const [current, setCurrent] = useState(null);
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  const randomRiddle = () => {
+    const randomIndex = Math.floor(Math.random() * riddles.length);
+    setCurrent(riddles[randomIndex]);
+    setShowAnswer(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-400 to-purple-600 flex flex-col items-center justify-center p-6 text-white">
+      <h1 className="text-4xl font-bold mb-4">🧩 MalookRiddles</h1>
+      <p className="text-lg mb-4">100 Mind-Bending Riddles to Challenge Your Brain</p>
+
+      <div className="flex gap-4 mb-6">
+        <button
+          onClick={randomRiddle}
+          className="bg-pink-500 px-4 py-2 rounded-full hover:bg-pink-600 transition"
+        >
+          🎲 Random Riddle
+        </button>
+        {current && (
+          <button
+            onClick={() => setShowAnswer(!showAnswer)}
+            className="bg-yellow-400 text-black px-4 py-2 rounded-full hover:bg-yellow-300 transition"
+          >
+            {showAnswer ? "🔙 Hide Answer" : "💡 Show Answer"}
+          </button>
+        )}
+      </div>
+
+      {current && (
+        <div className="bg-white text-black p-6 rounded-xl shadow-lg w-full max-w-xl text-center">
+          <p className="text-xl mb-2">{current.q}</p>
+          {showAnswer && <p className="font-bold text-green-600">{current.a}</p>}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Index;
